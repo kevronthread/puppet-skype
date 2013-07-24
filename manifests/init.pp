@@ -3,9 +3,33 @@
 # Examples
 #
 #   include skype
-class skype {
-  package { 'Skype':
-    provider => 'appdmg',
-    source   => 'http://download.skype.com/macosx/Skype_6.5.0.443.dmg',
+# class skype {
+#   package { 'Skype':
+#     provider => 'appdmg',
+#     source   => 'http://download.skype.com/macosx/Skype_6.5.0.443.dmg',
+#   }
+# }
+class skype($ensure = present) {
+    case $ensure {
+      present: {
+        Package {
+          ensure => present
+        }
+      }
+
+      absent: {
+        Package {
+          ensure => absent
+        }
+      }
+
+      default: {
+        fail("Ensure must be present or absent!")
+      }
+    }
+
+    package { 'Skype':
+      provider => 'appdmg',
+      source   => 'http://download.skype.com/macosx/Skype_6.5.0.443.dmg'
+    }
   }
-}
