@@ -3,12 +3,7 @@
 # Examples
 #
 #   include skype
-# class skype {
-#   package { 'Skype':
-#     provider => 'appdmg',
-#     source   => 'http://download.skype.com/macosx/Skype_6.5.0.443.dmg',
-#   }
-# }
+
 class skype($ensure = present) {
     case $ensure {
       present: {
@@ -30,6 +25,6 @@ class skype($ensure = present) {
 
     package { 'Skype':
       provider => 'appdmg',
-      source   => 'http://download.skype.com/macosx/Skype_6.6.0.467.dmg'
+      source   => 'http://www.skype.com/go/getskype-macosx.dmg'
     }
   }
